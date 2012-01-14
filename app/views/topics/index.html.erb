@@ -1,0 +1,23 @@
+<h1>Listing topics</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<!--ruby statement -->
+<% @topics.each do |topic| %>
+  <tr>
+    <td><%= link_to topic.title, topic %></td>
+    <td><%= pluralize(topic.votes.length, "vote") %></td>
+    <td><%= button_to '+1', votes_path(:topic_id => topic.id), :method => :post %></td>  
+    <td><%= link_to 'Delete', topic, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Topic', new_topic_path %>
